@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Etch-a-Sketch</title>
+<style>
+
+*{
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: 0 auto; 
+}
+.container {  
+  border: 1px solid red;
+  border-radius: 5%;
+  background-color: red;
+  padding: 75px;
+  width: 850px;
+  margin: 0 auto;
+}
+.grid-item {  
+  background-color: white;
+}
+
+.grid-item, .grey-square, .colour-square {
+  border: 1px solid black;  
+}
+
+</style>
+</head>
+<body>
+  <h1>
+    Etch-a-Sketch
+  </h1>
+  <button id="reset">Erase</button>
+  <br>
+  <br>
+  <div class="container">
+  <div class="grid-container"></div>
+  </div>
+</body>
+<script>
+
+const mainContainer = document.querySelector(".grid-container"); 
+
+function draw()
+{
+    const square = document.querySelectorAll(".grid-item");
+    square.forEach(function (box)
+    {
+        box.addEventListener("mouseover", function (e)
+        {
+            e.target.className = "grey-square"; 
+            e.target.style.backgroundColor = "black"; 
+        });
+    });
+}
+
+function drawGrid(size = 16)
+{
+    let blockSize = (700 / size); 
+    for(let i = 0; i < size ** 2; i++)
+    {
+        const block = document.createElement('div');
+        block.className = "grid-item"; 
+        block.style.width = blockSize + 'px';
+        block.style.height = blockSize + 'px'; 
+        mainContainer.appendChild(block); 
+    }
+}
+
+reset.onclick = resetFunction;
+
+function resetFunction() 
+{
+  let gridSize = prompt("How Many Columns Would You Like?"); 
+  mainContainer.innerHTML = ""; 
+  drawGrid(gridSize); 
+  draw(); 
+}
+
+drawGrid(); 
+draw(); 
+
+</script>
+
+</html>

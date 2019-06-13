@@ -27,6 +27,10 @@
   background-color: white;
 }
 
+h1 {
+  text-align: center; 
+}
+
 .grid-item, .grey-square, .colour-square {
   border: 1px solid black;  
 }
@@ -37,7 +41,9 @@
   <h1>
     Etch-a-Sketch
   </h1>
-  <button id="reset">Erase</button>
+  <div style="text-align: center">
+    <button id="reset">Reset Grid</button>
+  </div>
   <br>
   <br>
   <div class="container">
@@ -78,10 +84,18 @@ reset.onclick = resetFunction;
 
 function resetFunction() 
 {
-  let gridSize = prompt("How Many Columns Would You Like?"); 
+  let gridSize = prompt("How Many Columns Would You Like In the New Grid?"); 
   mainContainer.innerHTML = ""; 
-  drawGrid(gridSize); 
-  draw(); 
+  if(gridSize == null)
+  {
+    drawGrid(16);
+    draw();
+  }
+  else
+  {
+    drawGrid(gridSize); 
+    draw(); 
+  }
 }
 
 drawGrid(); 
